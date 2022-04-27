@@ -10,3 +10,12 @@
 [submodule "plugins/start/nerdtree-git-plugin"]
 	path = plugins/start/nerdtree-git-plugin
 	url = https://github.com/Xuyuanp/nerdtree-git-plugin
+[submodule "plugins/start/fuzzyf"]
+	path = plugins/start/fuzzyf
+	url = https://github.com/ctrlpvim/ctrlp.vim.git
+[submodule "plugins/start/comments"]
+	path = plugins/start/comments
+	url = https://tpope.io/vim/commentary.git
+[submodule "plugins/start/vim-jsx-pretty"]
+	path = plugins/start/vim-jsx-pretty
+	url = git@github.com:MaxMEllon/vim-jsx-pretty.git
