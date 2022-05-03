@@ -1,4 +1,4 @@
-let mapleader = " "
+let mapleader = ","
 set nu
 set relativenumber
 set hidden
@@ -9,18 +9,29 @@ set guifont=Monospace:h12
 colorscheme gruvbox
 set bg=dark
 :set backupcopy=yes
+" set cursorcolumn " highlight the screen column of the cursor
+set nomodeline
+
+" set statusline=%F[%L][%{&ff}]%y[%04l,%04v]
 
 nnoremap <silent> <Leader>gd :YcmCompleter GoTo<CR>
 nnoremap <silent> <Leader>gs :G<CR>
 nmap <Leader>r :e ~/bin/<CR>
+nmap <Leader>e :e ~/.vimrc<CR>
 nmap <Leader>gf :diffget //2<CR>
 nmap <Leader>gj :diffget //3<CR>
-imap cll console.log();<Esc>==f(a
-imap cmt // TODO: <Esc>i
-imap cmm // <Esc>i 
-imap cmb /**/ <Esc>F*i 
-imap clf const = () => {};<Esc>Ftli
+imap cl console.log();<Esc>==f(a
+imap cc // <Esc>i<space>
+imap cct // TODO: <Esc>i
+imap ccb /**/ <Esc>F*i
+imap cnf const = () => {};<Esc>Ftli
+imap caf () => {};<Esc>F)i
 nnoremap <silent> <Leader>gf :lnext<CR>
+
+nnoremap <Leader>t :term<CR>
+nnoremap <silent> <Leader>fuk :!npmC.sh -r %<CR>
+nnoremap <silent> <Leader>gp :Git -c push.default=current push<CR>
+nnoremap <Leader>ss :setlocal spell!<CR>
 
  let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -co --exclude-standard']
  let g:vim_jsx_pretty_colorful_config = 1 " default 0
@@ -31,6 +42,7 @@ nnoremap <silent> <Leader>gf :lnext<CR>
  nnoremap <leader>n :NERDTreeFocus<CR>
  nnoremap <C-n> :NERDTree<CR>
  nnoremap <C-t> :NERDTreeToggle<CR>
+ let g:NERDTreeWinPos = "right"
 
 """"""""""""""""""""""""""config""""""""""""""""""
 "
@@ -73,7 +85,7 @@ au FocusGained,BufEnter * checktime
 " Fast saving
 nmap <leader>w :w!<cr>
 
-" :W sudo saves the file 
+" :W sudo saves the file
 " (useful for handling the permission-denied error)
 command! W execute 'w !sudo tee % > /dev/null' <bar> edit!
 
@@ -97,14 +109,14 @@ set whichwrap+=<,>,h,l
 " Ignore case when searching
 set ignorecase
 
-" When searching try to be smart about cases 
+" When searching try to be smart about cases
 set smartcase
 
 " Highlight search results
 set hlsearch
 
 " Makes search act like search in modern browsers
-set incsearch 
+set incsearch
 
 " Height of the command bar
 set cmdheight=1
@@ -172,12 +184,25 @@ map <C-l> <C-W>l
 map <leader>tn :tabnew<cr>
 map <leader>to :tabonly<cr>
 map <leader>tc :tabclose<cr>
-map <leader>tm :tabmove 
-map <leader>t<leader> :tabnext 
+map <leader>tm :tabmove
+map <leader>t<leader> :tabnext
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Misc
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Quickly open a buffer for scribble
 map <leader>q :e ~/buffer<cr>
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => autocmd
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" remove trailing whitespaces
+autocmd BufWritePre * :%s/\s\+$//e
+
+" center cursor
+augroup VCenterCursor
+    au!
+      au BufEnter,WinEnter,WinNew,VimResized *,*.*
+              \ let &scrolloff=winheight(win_getid())/2
+    augroup END
 
