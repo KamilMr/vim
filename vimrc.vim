@@ -6,8 +6,9 @@ set scrolloff=8
 set signcolumn=yes
 set cc=80
 set guifont=Monospace:h12
+let g:gruvbox_vert_split ='light0'
 colorscheme gruvbox
-set bg=dark
+set background=dark
 :set backupcopy=yes
 " set cursorcolumn " highlight the screen column of the cursor
 set nomodeline
@@ -42,8 +43,7 @@ nnoremap <silent> <Leader>xxx :!cpvimrc.sh<CR>
 
  "NERDTree""""""""""""
  nnoremap <leader>n :NERDTreeFocus<CR>
- nnoremap <C-n> :NERDTree<CR>
- nnoremap <C-t> :NERDTreeToggle<CR>
+ nnoremap <C-n> :NERDTreeToggle<CR>
  let g:NERDTreeWinPos = "right"
 
 """"""""""""""""""""""""""config""""""""""""""""""
