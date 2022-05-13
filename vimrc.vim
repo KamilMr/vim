@@ -13,17 +13,18 @@ set background=dark
 " set cursorcolumn " highlight the screen column of the cursor
 set nomodeline
 
-" set statusline=%F[%L][%{&ff}]%y[%04l,%04v]
+set statusline=%F%m%r%=[%l/%L]
+
+:imap jj <Esc>
 
 nnoremap <silent> <Leader>gd :YcmCompleter GoTo<CR>
 nnoremap <silent> <Leader>gs :G<CR>
-nmap <Leader>r :e ~/bin/<CR>
-nmap <Leader>e :e ~/.vimrc<CR>
 nmap <Leader>gf :diffget //2<CR>
 nmap <Leader>gj :diffget //3<CR>
-imap cl console.log();<Esc>==f(a
+imap clo console.log();<Esc>==f(a
 imap cc // <Esc>i<space>
 imap cct // TODO: <Esc>i
+imap <Leader>cd <Esc>viwdi DONE<Esc>
 imap ccb /**/ <Esc>F*i
 imap cnf const = () => {};<Esc>Ftli
 imap caf () => {};<Esc>F)i
@@ -34,11 +35,19 @@ nnoremap <silent> <Leader>fuk :!npmC.sh -r %<CR>
 nnoremap <silent> <Leader>gp :Git -c push.default=current push<CR>
 nnoremap <Leader>ss :setlocal spell!<CR>
 
-nnoremap <silent> <Leader>xxx :!cpvimrc.sh<CR>
+nnoremap <silent> <Leader>uuu :!cpvimrc.sh<CR>
 
- let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -co --exclude-standard']
- let g:vim_jsx_pretty_colorful_config = 1 " default 0
- let g:vim_jsx_pretty_highlight_close_tag = 1
+"""""""""""""""""""""""""""""
+" Shortcuts to get to files "
+"""""""""""""""""""""""""""""
+nmap <Leader>vs :e ~/bin/<CR>
+nmap <Leader>vv :e ~/.vimrc<CR>
+nnoremap <Leader>vi :e ~/.config/i3/config<CR>
+
+
+let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -co --exclude-standard']
+let g:vim_jsx_pretty_colorful_config = 1 " default 0
+let g:vim_jsx_pretty_highlight_close_tag = 1
 
 
  "NERDTree""""""""""""
@@ -208,3 +217,17 @@ augroup VCenterCursor
               \ let &scrolloff=winheight(win_getid())/2
     augroup END
 
+"Esc Cap
+" au VimEnter * !xmodmap -e 'console.log(ear Lock' -e 'keycode 0x42 = Escape'
+" au VimLeave * !xmodmap -e 'console.log(ear Lock' -e 'keycode 0x42 = Caps_Lock'););
+" centers the current pane as the middle 2 of 4 imaginary columns
+" should be called in a window with a single pane
+
+function CenterPane()
+  lefta vnew
+  wincmd w
+  exec 'vertical resize '. string(&columns * 0.75)
+endfunction
+
+" optionally map it to a key:
+" nnoremap <leader>c :call CenterPane()<cr>
