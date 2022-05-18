@@ -15,7 +15,7 @@ set nomodeline
 
 set statusline=%F%m%r%=[%l/%L]
 
-:imap jj <Esc>
+:imap jk <Esc>
 
 nnoremap <silent> <Leader>gd :YcmCompleter GoTo<CR>
 nnoremap <silent> <Leader>gs :G<CR>
