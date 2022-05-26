@@ -44,7 +44,6 @@ nmap <Leader>vs :e ~/bin/<CR>
 nmap <Leader>vv :e ~/.vimrc<CR>
 nnoremap <Leader>vi :e ~/.config/i3/config<CR>
 
-
 let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -co --exclude-standard']
 let g:vim_jsx_pretty_colorful_config = 1 " default 0
 let g:vim_jsx_pretty_highlight_close_tag = 1
